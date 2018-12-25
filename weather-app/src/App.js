@@ -30,11 +30,17 @@ class App extends React.Component {
         //convert to json
         const data = await api_call.json();
 
+
+
         if (city && country) {
-            console.log(data);
+            //temp variable to hold kelvin temp so i can convert
+            var temp = (data.main.temp);
+            //converts kelvin to fahrenheit
+            temp = (((temp - 273.15) * (9 / 5)) + 32).toPrecision(2);
+
 
             this.setState({
-                temperature: data.main.temp,
+                temperature: temp,
                 city: data.name,
                 country: data.sys.country,
                 humidity: data.main.humidity,
